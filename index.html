@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntinharrrr</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet"> <!-- Fonte Romântica -->
+    <style>
+        /* Estilo do corpo */
+        body {
+            background: linear-gradient(to top right, #ff77aa, #ffbb77); /* Gradiente de fundo */
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Animação de fade-in */
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Estilo da primeira parte (pergunta) */
+        .pergunta {
+            display: block;
+            background-color: #fff;
+            padding: 30px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin-top: 20px;
+            z-index: 2;
+        }
+
+        .pergunta h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #ff7777;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1); /* Aumenta o tamanho do botão ao passar o mouse */
+            background-color: #ff4d4d;
+        }
+
+        /* Estilo da segunda parte (imagem + coração) */
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            display: none;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        .escudo {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+        }
+
+        /* Modificando a fonte da frase "Eliminado da Copa Sul-Americana" */
+        .texto {
+            font-size: 22px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif; /* Alterado para Arial */
+        }
+
+        .coracao {
+            position: relative;
+            display: inline-block;
+        }
+
+        .coracao img {
+            width: 280px;
+        }
+
+        .coracao span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 36px;
+            color: #ff7777;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Estilo do botão "Clique aqui" */
+        .romantico {
+            margin-top: 30px;
+            position: relative;
+            z-index: 3; /* Garante que o botão fique acima de outros elementos */
+        }
+
+        .romantico button {
+            font-size: 20px;
+            background-color: #ff5555;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .romantico button:hover {
+            background-color: #ff3333;
+            transform: scale(1.1);
+        }
+
+        /* Estilo da mensagem */
+        .mensagem {
+            display: none;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff77aa;
+            margin-top: 20px;
+        }
+
+        /* Mensagem final */
+        .mensagem-final {
+            display: none;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px; /* Ajuste a margem para garantir que fique visível */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .mensagem-final h2 {
+            font-size: 28px;
+            color: #ff5555;
+        }
+
+        .mensagem-final p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .pergunta, .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .escudo {
+                width: 120px;
+                height: 120px;
+            }
+
+            h1, .texto, .mensagem-final h2 {
+                font-size: 20px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pergunta fade-in" id="pergunta">
+        <h1>Você me ama?</h1>
+        <div class="buttons">
+            <button onclick="responderSim()">Sim</button>
+            <button id="botaoNao" onclick="moverNao()">Não</button>
+        </div>
+    </div>
+
+    <div class="container fade-in" id="container">
+        <img class="escudo" src="https://images-americanas.b2w.io/produtos/01/00/img/1512755/3/1512755394_1GG.jpg" alt="Escudo do Corinthians">
+        <div class="texto">Eliminado da Copa Sul-Americanaaa chupa curintia time ruim kkkkkkkk Brincadeirinha!</div>
+        <div class="coracao">
+            <a href="https://ibb.co/HH8j8Jd"><img src="https://i.ibb.co/BCM9M1N/Screenshot-20241110-202437-Google.jpg" alt="Screenshot-20241110-202437-Google" border="0"></a>
+            <span>Te amo Jakeeee my lovee</span>
+        </div>
+
+        <!-- Botão "Clique aqui" -->
+        <div class="romantico">
+            <button onclick="mostrarMensagem()">Clique aqui</button>
+            <div class="mensagem" id="mensagem">
+                Você é a razão do meu sorriso. ❤️
+            </div>
+
+            <!-- Mensagem final que será exibida com o cliqueeee-->
+            <div class="mensagem-final" id="mensagemFinal">
+                <h2>Para sempre você e eu, meu amor! ❤️</h2>
+                <p>Espero que este site tenha te mostrado o quanto você é importante para mim. Te amo com todo o meu coração! 😘</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar a segunda parte 
+        function responderSim() {
+            document.getElementById('pergunta').style.display = 'none';
+            document.getElementById('container').style.display = 'block';
+        }
+
+        // Função de mover o botão "Não"
+        function moverNao() {
+            const botaoNao = document.getElementById('botaoNao');
+            botaoNao.style.position = 'absolute';
+            botaoNao.style.top = Math.random() * 100 + 'px';
+            botaoNao.style.left = Math.random() * 100 + 'px';
+        }
+
+        // Mostrar a mensagem qundo clicar no botão
+        function mostrarMensagem() {
+            document.getElementById('mensagem').style.display = 'block';
+            document.getElementById('mensagemFinal').style.display = 'block'; // Exibe a mensagem final
+        }
+
+        window.onload = function() {
+            document.getElementById('pergunta').style.display = 'block';
+        };
+    </script>
+
+</body>
+</html>
